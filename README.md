@@ -66,3 +66,4 @@ OPTIONS:
 
 ## Implementation
 
+Dead simple implementation, using `NSWorkspace` to do the work—in most cases a single function call.
