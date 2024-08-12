@@ -1,5 +1,6 @@
 import ArgumentParser
 import Foundation
+import TerminalColor
 
 public struct SetIconCmd: ParsableCommand {
    public init() {}
@@ -18,12 +19,17 @@ public struct SetIconCmd: ParsableCommand {
            help: "Image file to use as custom icon (typically .icns or .png)")
    public var imageFile: String
    
+   @Flag(name: [.customLong("no-color")],
+         help: "Do not use color in output written to stdout or stderr")
+   public var noColor: Bool = false
    
    mutating public func run() throws {
       do {
+         ColorCode.COLOR_ENABLED = !noColor
          try SetIconCmdImpl(args: self).setIcon()
       } catch {
-         print("ERROR: \(error)")
+         var standardError = StderrOutputStream()
+         print("ERROR:".fg(.red) + " \(error)".fg(.yellow), to: &standardError)
       }
    }
 }

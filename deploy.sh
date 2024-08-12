@@ -1,6 +1,6 @@
 #!/bin/zsh
 echo "Building..."
-#swift build -c release # RELEASE BUILD IS BROKEN WITH CURRENT XCODE 12.3 FOR SOME REASON
+# swift build -c release # RELEASE BUILD IS BROKEN WITH CURRENT XCODE 12.3 FOR SOME REASON
 swift build # DEBUG BUILD to work around broken SPM
 echo "Build completed"
 

@@ -9,6 +9,15 @@
           "revision": "9564d61b08a5335ae0a36f789a7d71493eacadfc",
           "version": "0.3.2"
         }
+      },
+      {
+        "package": "TerminalColor",
+        "repositoryURL": "https://github.com/stuartro/TerminalColor.git",
+        "state": {
+          "branch": null,
+          "revision": "26473159e9e234f676e2065be6c2cef086b1167f",
+          "version": "1.0.0"
+        }
       }
     ]
   },

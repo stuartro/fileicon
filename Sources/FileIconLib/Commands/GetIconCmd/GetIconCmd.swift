@@ -1,5 +1,6 @@
 import ArgumentParser
 import Foundation
+import TerminalColor
 
 /// A command that retrieves a custom icon from a file/folder and saves it to disk as an image file.
 public struct GetIconCmd: ParsableCommand {
@@ -24,12 +25,17 @@ public struct GetIconCmd: ParsableCommand {
          help: "Force replacement of existing output file")
    var force = false
    
+   @Flag(name: [.customLong("no-color")],
+         help: "Do not use color in output written to stdout or stderr")
+   public var noColor: Bool = false
    
    mutating public func run() throws {
       do {
+         ColorCode.COLOR_ENABLED = !noColor
          try GetIconCmdImpl(args: self).getIcon_and_SaveToDisk()
       } catch {
-         print("ERROR: \(error)")
+         var standardError = StderrOutputStream()
+         print("ERROR:".fg(.red) + " \(error)".fg(.yellow), to: &standardError)
       }
    }
 }
